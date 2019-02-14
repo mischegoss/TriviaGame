@@ -1,4 +1,8 @@
 let currentquestion;
+const optiona = $("#optiona")
+const optionb = $("#optionb")
+const optionc = $("#optionc")
+const optiond = $("#optiond")
 
 function Question(prompt, responsea, responseb, responsec, responsed) {
     this.prompt = prompt;
@@ -8,7 +12,20 @@ function Question(prompt, responsea, responseb, responsec, responsed) {
     this.responsed = responsed;
     this.responses = [ responsea, responseb, responsec, responsed]
     this.sample = function () {
-        console.log(this.prompt)
+       optiona.text(this.responsea) 
+      };
+      this.sample2 = function () {
+        
+      };
+
+      this.sample3 = function () {
+        console.log(this.responseb)
+      };
+      this.sample4 = function () {
+        console.log(this.responseb)
+      };
+      this.sample5 = function () {
+        console.log(this.responseb)
       };
 
 }
