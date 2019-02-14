@@ -1,3 +1,5 @@
+let currentquestion;
+
 function Question(prompt, responsea, responseb, responsec, responsed) {
     this.prompt = prompt;
     this.responsea = responsea;
@@ -5,10 +7,13 @@ function Question(prompt, responsea, responseb, responsec, responsed) {
     this.responsec = responsec;
     this.responsed = responsed;
     this.responses = [ responsea, responseb, responsec, responsed]
+    this.sample = function () {
+        console.log(this.prompt)
+      };
 
 }
 
-let questionone = new Question('question', 'one', 'two', 'three', 'four');
+let questionone = new Question('question1', 'one', 'two', 'three', 'four');
 let questiontwo = new Question('question2', 'one2', 'two2', 'three2', 'four2');
 let questionthree = new Question('question3', 'one3', 'two3', 'three3', 'four3');
 let questionfour = new Question('question4', 'one4', 'two4', 'three4', 'four4');
@@ -21,6 +26,16 @@ let questionten = new Question('question10', 'one10', 'two10', 'three10', 'four1
 
 let questionarray = ["questionone", "questiontwo", "questionthree", "questionfour", "questionfive", "questionsix", "questionseven", "questioneight", "questionnine", "questionten"]
 
+function startGame() {
+    for (i = 0; i < questionarray.length; i++) { 
+
+      currentquestion = questionarray[i];  
+      let call = currentquestion + ".sample()"
+      eval(call)
+      }
+    }
 
 console.log(questionone, questiontwo, questionarray);
 
+
+startGame()
