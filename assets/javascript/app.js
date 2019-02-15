@@ -134,14 +134,16 @@ $(document).ready(function () {
     currentvalue = parseInt($(this).attr("value"));
     console.log(currentanswer, currentvalue)
 
-   /* if (optionsvalue === currentanswer && !solved) {
+    if (!solved)  {
+
+   if (currentvalue === currentanswer) {
       console.log ("Win")
       solved = true;
     } else {
       console.log ("Don't Win")
     }
+  }
 
-*/
     
   });
   }
