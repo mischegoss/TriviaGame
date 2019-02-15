@@ -109,36 +109,46 @@ $(document).ready(function () {
     promptset.text(currentquestion.prompt);
     
     option0.text(currentquestion.options[0]);
+    
+    
    
     option1.text(currentquestion.options[1]);
+   
     
     option2.text(currentquestion.options[2]);
+    
    
     option3.text(currentquestion.options[3]); 
+    
    
     image.attr("src", currentquestion.image1);
-    currentanswer = currentquestion.answer
+    
   }
 
  
   
   function answerClick() {
   pageoptions.click(function(){
-    
+  
+    currentanswer = currentquestion.answer;
+    currentvalue = parseInt($(this).attr("value"));
+    console.log(currentanswer, currentvalue)
 
-    if (optionsvalue === currentanswer && !solved) {
+   /* if (optionsvalue === currentanswer && !solved) {
       console.log ("Win")
       solved = true;
     } else {
       console.log ("Don't Win")
     }
 
-
+*/
     
   });
   }
   pickQuestions()
   });
+
+  
   
   
       
