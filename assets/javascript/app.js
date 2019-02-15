@@ -1,4 +1,9 @@
 $(document).ready(function () {
+  const promptset = $("#prompt")
+  const optiona = $("#optiona")
+  const optionb = $("#optionb")
+  const optionc = $("#optionc")
+  const optiond = $("#optiond")
   
   let index;
   
@@ -86,9 +91,20 @@ $(document).ready(function () {
   
   function pickQuestions() {
       let length = Quiz.length;
-      index= Math.floor(Math.random() * length );  // Returns random number between 0 and 9
+      index= Math.floor(Math.random() * length );  // Returns random number
       currentquestion  = Quiz[index];
-      console.log( currentquestion);
+      setPage();
+      
+  }
+
+  function setPage() {
+    promptset.text(currentquestion.prompt);
+    optiona.text(currentquestion.options[0]);
+    optionb.text(currentquestion.options[1]);
+    optionc.text(currentquestion.options[2]);
+    optiond.text(currentquestion.options[3]);
+    
+
   }
 
   pickQuestions()
