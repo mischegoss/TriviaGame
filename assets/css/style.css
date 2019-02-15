@@ -1,3 +1,7 @@
 .card {
     width: 80%;
 }
+
+#image {
+    max-width: 60%;
+}

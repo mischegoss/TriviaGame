@@ -1,36 +1,41 @@
 $(document).ready(function () {
-  const promptset = $("#prompt")
-  const optiona = $("#optiona")
-  const optionb = $("#optionb")
-  const optionc = $("#optionc")
-  const optiond = $("#optiond")
-  
+  const promptset = $("#prompt");
+  const option0 = $("#optiona");
+  const option1 = $("#optionb");
+  const option2 = $("#optionc");
+  const option3 = $("#optiond");
+  const image = $("#image");
+  const pageoptions = $(".options");
+  let solved = false;
   let index;
+  let currentquestion;
+  let currentanswer;
+  let optionsvalue;
   
   
   var Quiz = [
-    {
-      image1: "assets/images/#.jpg",
-      imagesolution: "assets/images/#.jpg",
-      prompt: "Question1", 
-      options: ["a", "b", "c", "d"],
+    { /*One */
+      image1: "assets/images/oneunsolved.jpg",
+      imagesolution: "assets/images/onesolved.jpg",
+      prompt: "On Valentine's Day, who did Trump call a 'poor little Angel' and accuse of being part of the Russian hoax?", 
+      options: ["Paul Manafort", "Andrew McCabe", "Peter Strzok", "Sean Hannity"],
       answer: 1,
       
      },
-     {
-      image1: "assets/images/#.jpg",
-      imagesolution: "assets/images/#.jpg",
-      prompt: "Question 2", 
-      options: ["e", "f", "g", "h"],
-      answer: 2,
+     { /*Two */
+      image1: "assets/images/twounsolved.jpg",
+      imagesolution: "assets/images/twosolved.jpg",
+      prompt: "Steve Bannon said 2019 is going to be the 'nastiest year in American politics' since the Civil War. What nasty thing did Trump say about him in 2018?", 
+      options: ["Sloppy", "Stinky", "Stupid", "Sleazy"],
+      answer: 0,
       
      }, 
-     {
-      image1: "assets/images/#.jpg",
-      imagesolution: "assets/images/#.jpg",
-      prompt: "Question 3", 
-      options: ["i", "j", "k", "l"],
-      answer: 3,
+     { /*Three */
+      image1: "assets/images/threeunsolved.jpg",
+      imagesolution: "assets/images/threesolved.jpg",
+      prompt: "This is a favorite rally refrain. Who does Trump call 'Crooked'? ", 
+      options: ["Elizabeth Warren", "Nancy Pelosi", "Hillary Clinton", "Ted Cruz"],
+      answer: 2,
       
     }, 
     {
@@ -90,23 +95,48 @@ $(document).ready(function () {
     }];
   
   function pickQuestions() {
-      let length = Quiz.length;
+      let length = /*Quiz.length; */ 3
       index= Math.floor(Math.random() * length );  // Returns random number
       currentquestion  = Quiz[index];
       setPage();
+      answerClick();
+     
+     
       
   }
 
   function setPage() {
     promptset.text(currentquestion.prompt);
-    optiona.text(currentquestion.options[0]);
-    optionb.text(currentquestion.options[1]);
-    optionc.text(currentquestion.options[2]);
-    optiond.text(currentquestion.options[3]);
     
-
+    option0.text(currentquestion.options[0]);
+   
+    option1.text(currentquestion.options[1]);
+    
+    option2.text(currentquestion.options[2]);
+   
+    option3.text(currentquestion.options[3]); 
+   
+    image.attr("src", currentquestion.image1);
+    currentanswer = currentquestion.answer
   }
 
+ 
+  
+  function answerClick() {
+  pageoptions.click(function(){
+    
+
+    if (optionsvalue === currentanswer && !solved) {
+      console.log ("Win")
+      solved = true;
+    } else {
+      console.log ("Don't Win")
+    }
+
+
+    
+  });
+  }
   pickQuestions()
   });
   
