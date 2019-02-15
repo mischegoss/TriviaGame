@@ -1,126 +1,112 @@
-let currentquestion;
-let solved = false;
-const optiona = $("#optiona")
-const optionb = $("#optionb")
-const optionc = $("#optionc")
-const optiond = $("#optiond")
-const pageprompt = $("#prompt")
-const options = $(".options")
+$(document).ready(function () {
+  
+  let index;
+  
+  
+  var Quiz = [
+    {
+      image1: "assets/images/#.jpg",
+      imagesolution: "assets/images/#.jpg",
+      prompt: "Question1", 
+      options: ["a", "b", "c", "d"],
+      answer: 1,
+      
+     },
+     {
+      image1: "assets/images/#.jpg",
+      imagesolution: "assets/images/#.jpg",
+      prompt: "Question 2", 
+      options: ["e", "f", "g", "h"],
+      answer: 2,
+      
+     }, 
+     {
+      image1: "assets/images/#.jpg",
+      imagesolution: "assets/images/#.jpg",
+      prompt: "Question 3", 
+      options: ["i", "j", "k", "l"],
+      answer: 3,
+      
+    }, 
+    {
+      image1: "assets/images/#.jpg",
+      imagesolution: "assets/images/#.jpg",
+      prompt: "Question 4", 
+      options: ["m", "n", "o", "p"],
+      answer: 0,
+      
+    }, 
+    {
+      image1: "assets/images/#.jpg",
+      imagesolution: "assets/images/#.jpg",
+      prompt: "Question 5", 
+      options: ["q", "r", "s", "t"],
+      answer: 1,
+      
+    }, 
+    {
+      image1: "assets/images/#.jpg",
+      imagesolution: "assets/images/#.jpg",
+      prompt: "Question 6", 
+      options: ["u", "v", "w", "x"],
+      answer: 0,
+      
+    }, 
+    {
+      image1: "assets/images/#.jpg",
+      imagesolution: "assets/images/#.jpg",
+      prompt: "Question 7", 
+      options: ["y", "z", "aa", "bb"],
+      answer: 2,
+      
+    }, 
+    {
+      image1: "assets/images/#.jpg",
+      imagesolution: "assets/images/#.jpg",
+      prompt: "Question  8", 
+      options: ["cc", "dd", "ee", "ff"],
+      answer: 3,
+    },
 
+    {
+      image1: "assets/images/#.jpg",
+      imagesolution: "assets/images/#.jpg",
+      prompt: "Question  9", 
+      options: ["gg", "hh", "ii", "jj"],
+      answer: 3,
+    },
 
-function Question(prompt, responsea, responseb, responsec, responsed, answer) {
-    this.prompt = prompt;
-    this.responsea = responsea;
-    this.responseb = responseb;
-    this.responsec = responsec;
-    this.responsed = responsed;
-    this.answer = answer;
-   
-    this.sample = function () {
-       this.setQuestion()
-       this.setOne()
-       this.setTwo()
-       this.setThree()
-       this.setFour()
-       
+    {
+      image1: "assets/images/#.jpg",
+      imagesolution: "assets/images/#.jpg",
+      prompt: "Question  10", 
+      options: ["kk", "ll", "mm", "nn"],
+      answer: 3,
+    }];
+  
+  function pickQuestions() {
+      let length = Quiz.length;
+      index= Math.floor(Math.random() * length );  // Returns random number between 0 and 9
+      currentquestion  = Quiz[index];
+      console.log( currentquestion);
+  }
+
+  pickQuestions()
+  });
+  
+  
+      
+
+     
+
     
-      };
-      this.setQuestion = function () {
-        pageprompt.text(this.prompt) 
-      };
 
-      this.setOne = function () {
-        optiona.text(responsea)
-        optiona.val(this.responsea) 
-        optiona.click(function(){
-        let x =optiona.val()
-        if (x === answer) {
-          console.log("got it")
-          console.log(x)
-          solved = true;
-
-        } else {
-          console.log("Wrong")
-        }
-          
+     
       
-        });
-      };
-
-      this.setTwo = function () {
-        optionb.text(responseb)
-        optionb.val(this.responseb) 
-        optionb.click(function(){
-        let x =optionb.val()
-        if (x === answer) {
-          console.log("got it")
-          console.log(x)
-          solved = true;
-
-        }
-          
-        
-        });
-      };
-
-      this.setThree = function () {
-        optionc.text(responsec)
-        optionc.val(this.responsec) 
-        optionc.click(function(){
-        let x =optionc.val()
-        if (x === answer) {
-          console.log("got it")
-          console.log(x)
-          solved = true;
-
-        } else {
-          console.log("wrong")
-        }
-          
-        
-        });
-      };
-
-      this.setFour = function () {
-        optiond.text(responsed)
-        optiond.val(this.responsed) 
-        optiond.click(function(){
-        let x =optionb.val()
-        if (x === answer) {
-          console.log("got it")
-          console.log(x)
-          solved = true;
-
-        }
-          
-        
-        });
-      };
       
-}
-
-let questionone = new Question('question1', 'one', 'two', 'three', 'four', 'one');
-let questiontwo = new Question('question2', 'one2', 'two2', 'three2', 'four2', 'two2');
-let questionthree = new Question('question3', 'one3', 'two3', 'three3', 'four3', 'three3');
-let questionfour = new Question('question4', 'one4', 'two4', 'three4', 'four4', 'four4');
-let questionfive = new Question('question5', 'one5', 'two5', 'three5', 'four5', 'one5');
-let questionsix = new Question('question6', 'one6', 'two6', 'three6', 'four6', 'two6');
-let questionseven = new Question('question7', 'one7', 'two7', 'three7', 'four7', 'three7');
-let questioneight = new Question('question8', 'one8', 'two8', 'three8', 'four8', 'four8');
-let questionnine = new Question('question9', 'one9', 'two9', 'three9', 'four9', 'one9');
-let questionten = new Question('question10', 'one10', 'two10', 'three10', 'four10', 'one10');
-
-let questionarray = ["questionone", "questiontwo", "questionthree", "questionfour", "questionfive", "questionsix", "questionseven", "questioneight", "questionnine", "questionten"]
-
-function startGame() {
-      let i = 1; 
-
-      currentquestion = questionarray[i];  
-      let call = currentquestion + ".sample()"
+     
       
-      eval(call)
-      
-      }
+     
       
       
 
@@ -129,7 +115,3 @@ function startGame() {
     
   
 
-console.log(questionone, questiontwo, questionarray);
-
-
-startGame()
