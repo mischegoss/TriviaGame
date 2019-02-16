@@ -7,7 +7,6 @@ $(document).ready(function () {
   const button = $(".btn");
   const image = $("#image");
   const pageoptions = $(".options");
-  let solved = false;
   let index;
   let currentquestion;
   let currentanswer;
@@ -100,7 +99,7 @@ $(document).ready(function () {
       index= Math.floor(Math.random() * length );  // Returns random number
       currentquestion  = Quiz[index];
       setPage();
-      answerClick();  
+       
   }
 
   function setPage() {
@@ -115,32 +114,33 @@ $(document).ready(function () {
     
   }
   
-  function answerClick() {
+ 
+
   pageoptions.click(function(){
   
-    currentanswer = currentquestion.answer;
-    currentvalue = parseInt($(this).attr("value"));
-    console.log(currentanswer, currentvalue)
+  currentanswer = currentquestion.answer;
+  currentvalue = parseInt($(this).attr("value"));
+  console.log(currentanswer, currentvalue)
 
-    
+  
 
    if (currentvalue === currentanswer) {
      
       checkWin();
-    } else {
+    } else if (currentvalue !== currentanswer) {
       noWin();
-      $(this).css("background-color", "#d82129");
+      $(this).text("WRONG");
     }
   
-
+  
     
   });
-  }
+  
 /*Win Function */
   function checkWin() {
-    console.log("win");
+    
     resetGame();
-    startGame();
+    
    
   }
 /*No win function */
@@ -151,16 +151,19 @@ $(document).ready(function () {
 /*Start Game Function */
 
 function startGame() {
+  
   pickQuestions();
   setPage();
   answerClick(); 
 }
 
 function resetGame() {
-  option0.css("background-color", "green");
-  option1.css("background-color", "green");
-  option2.css("background-color", "green");
-  option3.css("background-color", "green");
+  pickQuestions();
+  setPage();
+  
+ 
+console.log("Reset")
+  
   
 }
   
@@ -174,46 +177,3 @@ function resetGame() {
 
   /*End Code */
   });
-
-  
-  
-  
-      
-
-     
-
-    
-
-     
-      
-      
-     
-      
-     
-      
-      
-
-
-  
-  
-  
-      
-
-     
-
-    
-
-     
-      
-      
-     
-      
-     
-      
-      
-
-    
-      
-    
-  
-
