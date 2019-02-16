@@ -1,7 +1,36 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #db977f;
+}
+
 .card {
     width: 80%;
 }
 
 #image {
-    max-width: 60%;
+    max-width: 100%;
 }
+
+.header {
+    background-color: #1f174b;
+    border: 5px solid #d82129;
+}
+
+.main-title {
+    color: #db977f;
+}
+
+.buffer {
+    height: 2.5em;
+}
+
+.options {
+    background-color: #d8d9f2;
+    border: 2px solid  #d82129;
+    color: navy;
+       
+}
+
