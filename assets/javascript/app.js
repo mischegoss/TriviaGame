@@ -4,13 +4,14 @@ $(document).ready(function () {
   const option1 = $("#optionb");
   const option2 = $("#optionc");
   const option3 = $("#optiond");
+  const button = $(".btn");
   const image = $("#image");
   const pageoptions = $(".options");
   let solved = false;
   let index;
   let currentquestion;
   let currentanswer;
-  let optionsvalue;
+  
   
   
   var Quiz = [
@@ -99,33 +100,20 @@ $(document).ready(function () {
       index= Math.floor(Math.random() * length );  // Returns random number
       currentquestion  = Quiz[index];
       setPage();
-      answerClick();
-     
-     
-      
+      answerClick();  
   }
 
   function setPage() {
     promptset.text(currentquestion.prompt);
     
     option0.text(currentquestion.options[0]);
-    
-    
-   
     option1.text(currentquestion.options[1]);
-   
-    
     option2.text(currentquestion.options[2]);
-    
-   
     option3.text(currentquestion.options[3]); 
     
-   
     image.attr("src", currentquestion.image1);
     
   }
-
- 
   
   function answerClick() {
   pageoptions.click(function(){
@@ -134,20 +122,57 @@ $(document).ready(function () {
     currentvalue = parseInt($(this).attr("value"));
     console.log(currentanswer, currentvalue)
 
-    if (!solved)  {
+    
 
    if (currentvalue === currentanswer) {
-      console.log ("Win")
-      solved = true;
+     
+      checkWin();
     } else {
-      console.log ("Don't Win")
+      noWin();
+      $(this).css("background-color", "#d82129");
     }
-  }
+  
 
     
   });
   }
-  pickQuestions()
+/*Win Function */
+  function checkWin() {
+    console.log("win");
+    resetGame();
+    startGame();
+   
+  }
+/*No win function */
+  function noWin()  {
+    console.log("no win")
+  }
+
+/*Start Game Function */
+
+function startGame() {
+  pickQuestions();
+  setPage();
+  answerClick(); 
+}
+
+function resetGame() {
+  option0.css("background-color", "green");
+  option1.css("background-color", "green");
+  option2.css("background-color", "green");
+  option3.css("background-color", "green");
+  
+}
+  
+  /*Sets up game on click */
+
+ button.click(function(){
+    startGame();
+  });
+
+
+
+  /*End Code */
   });
 
   
