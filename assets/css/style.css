@@ -8,17 +8,25 @@ body {
 
 .card {
     width: 80%;
+    border: 5px solid #1f174b;
    
 }
 
 #image {
     max-width: 600px;
     padding-top: 2em;
+    
 }
 
 .header {
     background-color: #1f174b;
     border: 5px solid #d82129;
+}
+
+.card-title {
+    padding: 1em;
+    border-bottom: 5px solid #d82129;
+    border-top: 1px dashed  #1f174b;
 }
 
 .main-title {
