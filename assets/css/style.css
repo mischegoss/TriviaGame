@@ -8,10 +8,12 @@ body {
 
 .card {
     width: 80%;
+   
 }
 
 #image {
-    max-width: 100%;
+    max-width: 600px;
+    padding-top: 2em;
 }
 
 .header {
@@ -20,7 +22,7 @@ body {
 }
 
 .main-title {
-    color: #db977f;
+    color: white;
 }
 
 .buffer {
@@ -28,9 +30,20 @@ body {
 }
 
 .options {
-    background-color: navy;
+    background-color: #1f174b;
     border: 2px solid  #d82129;
     color: #db977f;
+    width: 80%;
        
+}
+
+.btn {
+    width: 60%;
+    background-color: #1f174b;
+
+}
+
+.small-buffer {
+    height: 1em;
 }
 
