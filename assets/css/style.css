@@ -4,9 +4,12 @@
 
 body {
     background-color: #db977f;
+       
     
-    
-    
+}
+
+.hide {
+    display: none;
 }
 
 .card {

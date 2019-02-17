@@ -10,6 +10,10 @@ $(document).ready(function () {
   let index;
   let currentquestion;
   let currentanswer;
+  let win = 0;
+  let loss = 0;
+  let clickcount = 3;
+ 
   
   
   
@@ -114,50 +118,19 @@ $(document).ready(function () {
     
   }
   
- 
-
-  pageoptions.click(function(){
-  
-  currentanswer = currentquestion.answer;
-  currentvalue = parseInt($(this).attr("value"));
-  console.log(currentanswer, currentvalue)
-
-  
-
-   if (currentvalue === currentanswer) {
-     
-      checkWin();
-    } else if (currentvalue !== currentanswer) {
-      noWin();
-      $(this).text("WRONG");
-    }
-  
-  
-    
-  });
-  
-/*Win Function */
-  function checkWin() {
-    
-    resetGame();
-    
-   
-  }
-/*No win function */
-  function noWin()  {
-    console.log("no win")
-  }
 
 /*Start Game Function */
 
 function startGame() {
-  
+  clickcount = 0;
   pickQuestions();
   setPage();
-  answerClick(); 
+
+  
 }
 
 function resetGame() {
+  clickcount = 0;
   pickQuestions();
   setPage();
   
@@ -166,12 +139,48 @@ console.log("Reset")
   
   
 }
+
+
   
-  /*Sets up game on click */
+  /*Sets up click events */
 
  button.click(function(){
+   button.addClass("hide");
     startGame();
   });
+
+  pageoptions.click(function(){
+    currentvalue = parseInt($(this).attr("value"));
+    currentanswer = currentquestion.answer;
+    clickcount ++
+    console.log (clickcount)
+ 
+console.log(currentanswer, currentvalue)
+
+
+   if (currentvalue === currentanswer) {
+    promptset.text("You are correct!");
+    image.attr("src", currentquestion.imagesolution);
+    win ++
+    console.log("Win", win)
+    setTimeout(resetGame, 2000);
+    } else {
+
+      if (clickcount < 3) {
+        $(this).text("WRONG");
+      }
+        else {
+          loss ++
+          console.log("Loss", loss)
+          image.attr("src", currentquestion.imagesolution);
+          promptset.text("We can't all be stable geniuses!");
+          setTimeout(resetGame, 3000);
+          console.log("Trigger Loss")
+      }
+
+    }
+      
+    });
 
 
 
