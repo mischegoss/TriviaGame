@@ -6,6 +6,7 @@ $(document).ready(function () {
   const option3 = $("#optiond");
   const button = $(".btn");
   const image = $("#image");
+  const timer = $("#timer");
   const pageoptions = $(".options");
   let index;
   let currentquestion;
@@ -13,6 +14,7 @@ $(document).ready(function () {
   let win = 0;
   let loss = 0;
   let clickcount = 3;
+  let time;
  
   
   
@@ -125,6 +127,7 @@ function startGame() {
   clickcount = 0;
   pickQuestions();
   setPage();
+  
 
   
 }
@@ -133,19 +136,38 @@ function resetGame() {
   clickcount = 0;
   pickQuestions();
   setPage();
-  
- 
-console.log("Reset")
-  
-  
+
+console.log("Reset") 
 }
 
+function setTimer() {
+  clock = setInterval(startCountDown, 1000);
+  startCountDown();
+}
+  function startCountDown()  {
+    if (time < 1) {
+      clearInterval(clock);
+      resetGame();
+    }
+    if (time > 0) {
+      time--;
+    }
+    timer.text(time);
+  }
+
+function  timerOnFirstClick() {
+  if (clickcount === 1 )  {
+    time = 15;
+    setTimer();
+  }
+}
 
   
   /*Sets up click events */
 
  button.click(function(){
    button.addClass("hide");
+   timer.toggleClass("hide");
     startGame();
   });
 
@@ -153,6 +175,7 @@ console.log("Reset")
     currentvalue = parseInt($(this).attr("value"));
     currentanswer = currentquestion.answer;
     clickcount ++
+    timerOnFirstClick();
     console.log (clickcount)
  
 console.log(currentanswer, currentvalue)
