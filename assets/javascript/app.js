@@ -1,4 +1,9 @@
+
+
+
 $(document).ready(function () {
+
+ 
   const promptset = $("#prompt");
   const option0 = $("#optiona");
   const option1 = $("#optionb");
@@ -15,10 +20,7 @@ $(document).ready(function () {
   let loss = 0;
   let clickcount = 3;
   let time;
- 
-  
-  
-  
+
   var Quiz = [
     { /*One */
       image1: "assets/images/oneunsolved.jpg",
@@ -100,6 +102,9 @@ $(document).ready(function () {
       answer: 3,
     }];
   
+ 
+ 
+ 
   function pickQuestions() {
       let length = /*Quiz.length; */ 3
       index= Math.floor(Math.random() * length );  // Returns random number
@@ -121,21 +126,13 @@ $(document).ready(function () {
   }
   
 
-/*Start Game Function */
-
-function startGame() {
-  clickcount = 0;
-  pickQuestions();
-  setPage();
-  
-
-  
-}
-
 function resetGame() {
   clickcount = 0;
+ 
   pickQuestions();
   setPage();
+  time = 15;
+  timer.text("15");
 
 console.log("Reset") 
 }
@@ -147,7 +144,8 @@ function setTimer() {
   function startCountDown()  {
     if (time < 1) {
       clearInterval(clock);
-      resetGame();
+      promptset.text("We can't all be stable geniuses!");
+      setTimeout(resetGame, 1000)
     }
     if (time > 0) {
       time--;
@@ -155,12 +153,23 @@ function setTimer() {
     timer.text(time);
   }
 
-function  timerOnFirstClick() {
+function timerOnFirstClick() {
   if (clickcount === 1 )  {
     time = 15;
     setTimer();
   }
 }
+
+function setWin() {
+  promptset.text("You are correct!");
+    image.attr("src", currentquestion.imagesolution);
+    win ++
+    console.log("Win", win)
+   
+    setTimeout(resetGame, 2000);
+    clearInterval(clock);
+}
+
 
   
   /*Sets up click events */
@@ -168,7 +177,7 @@ function  timerOnFirstClick() {
  button.click(function(){
    button.addClass("hide");
    timer.toggleClass("hide");
-    startGame();
+    resetGame();
   });
 
   pageoptions.click(function(){
@@ -179,18 +188,14 @@ function  timerOnFirstClick() {
     console.log (clickcount)
  
 console.log(currentanswer, currentvalue)
-
-
+   
    if (currentvalue === currentanswer) {
-    promptset.text("You are correct!");
-    image.attr("src", currentquestion.imagesolution);
-    win ++
-    console.log("Win", win)
-    setTimeout(resetGame, 2000);
+    setWin()
     } else {
 
       if (clickcount < 3) {
         $(this).text("WRONG");
+      
       }
         else {
           loss ++
@@ -198,10 +203,12 @@ console.log(currentanswer, currentvalue)
           image.attr("src", currentquestion.imagesolution);
           promptset.text("We can't all be stable geniuses!");
           setTimeout(resetGame, 3000);
+          clearInterval(clock);
           console.log("Trigger Loss")
       }
 
     }
+  
       
     });
 
