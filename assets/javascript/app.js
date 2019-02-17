@@ -4,7 +4,7 @@ $(document).ready(function () {
   const option1 = $("#optionb");
   const option2 = $("#optionc");
   const option3 = $("#optiond");
-  const button = $(".btn");
+  const button = $(".button");
   const image = $("#image");
   const timer = $("#timer");
   const pageoptions = $(".options");
