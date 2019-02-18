@@ -1,4 +1,5 @@
-
+/* TO DO for completed game: Add function to remove question from array once used. 
+ * Populate data. Add finish screen */
 
 
 $(document).ready(function () {
@@ -16,7 +17,7 @@ $(document).ready(function () {
   const endtitle = $(".end-title");
   const winscreen = $("#win");
   const lossscreen = $("#loss");
-  let index;
+  let currentindex;
   let currentquestion;
   let currentanswer;
   let win = 0;
@@ -113,8 +114,8 @@ $(document).ready(function () {
  
   function pickQuestions() {
       let length = Quiz.length; 
-      index= Math.floor(Math.random() * length );  // Returns random number
-      currentquestion  = Quiz[index];
+      currentindex= Math.floor(Math.random() * length );  // Returns random number
+      currentquestion  = Quiz[currentindex];
       setPage();
        
   }
@@ -146,15 +147,30 @@ function setFinalScreen() {
   }
   
 }
+
+function splitArray() {
+  if (currentindex > -1) {
+    Quiz.splice(currentindex, 1);
+  }
+
+  console.log(Quiz);
+}
   
 /* Sets and resets game. Replaces near-duplicate functions */
 function resetGame() {
-  clickcount = 0;
+ setGame()
+ splitArray()
+
+}
+
+function setGame() {
+ clickcount = 0;
   pickQuestions();
   setPage();
   time = 15;
   timer.text("15");
-console.log("Reset") 
+  console.log("Reset")
+  
 }
 
 /* Sets Timer */
@@ -200,7 +216,7 @@ function setWin() {
  button.click(function(){
    button.addClass("hide");
    timer.toggleClass("hide");
-    resetGame();
+    setGame();
   });
 
   /* This is the click event that provides the decision making for the game */
