@@ -1,3 +1,10 @@
+/* Still working on this but I ran out of time.
+* TODO: Final screen working
+*Add data for questions.
+*Clean up  Javascript mess below */
+
+
+
 $(document).ready(function () {
 
  
@@ -11,8 +18,8 @@ $(document).ready(function () {
   const timer = $("#timer");
   const pageoptions = $(".options");
   const endtitle = $(".end-title");
-  const winscreen = $("#win");
-  const lossscreen = $("#loss");
+  const winspan = $("#win");
+  const lossspan = $("#loss");
   let gamecount = 1;
   let index = 0;
   let currentquestion;
@@ -133,8 +140,8 @@ function setFinalScreen() {
  
     promptset.text("GAME OVER!")
     endtitle.toggleClass("hide");
-    winscreen.text(win);
-    lossscreen.text(loss);
+    winspan.text(win);
+    lossspan.text(loss);
 
 
     
