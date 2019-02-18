@@ -137,7 +137,7 @@ $(document).ready(function () {
 /* Sets Final Screen */
 
 function setFinalScreen() {
- 
+    index = 0;
     promptset.text("GAME OVER!")
     endtitle.toggleClass("hide");
     winspan.text(win);
@@ -222,9 +222,10 @@ playagain.click(function(){
   console.log("Play Again")
   win = 0;
   loss = 0;
-  index = 0;
   endtitle.toggleClass("hide");
+  playagain.toggleClass("hide");
   pageoptions.toggleClass("hide");
+  timer.toggleClass("hide");
   console.log(win, loss, index)
   resetGame();
  });
