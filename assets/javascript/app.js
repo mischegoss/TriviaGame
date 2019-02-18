@@ -9,16 +9,19 @@ $(document).ready(function () {
   const option1 = $("#optionb");
   const option2 = $("#optionc");
   const option3 = $("#optiond");
-  const button = $(".button");
+  const button = $(".lets-play");
   const image = $("#image");
   const timer = $("#timer");
   const pageoptions = $(".options");
+  const endtitle = $(".end-title");
+  const winscreen = $("#win");
+  const lossscreen = $("#loss");
   let index;
   let currentquestion;
   let currentanswer;
   let win = 0;
   let loss = 0;
-  let clickcount = 3;
+  let clickcount = 0;
   let time;
 
   var Quiz = [
@@ -46,6 +49,7 @@ $(document).ready(function () {
       answer: 2,
       
     }, 
+    /* TO DO: Add more data
     {
       image1: "assets/images/#.jpg",
       imagesolution: "assets/images/#.jpg",
@@ -100,19 +104,22 @@ $(document).ready(function () {
       prompt: "Question  10", 
       options: ["kk", "ll", "mm", "nn"],
       answer: 3,
-    }];
+    }
+  */
+  ];
   
- 
- 
+
+ /*This picks questions at random */
  
   function pickQuestions() {
-      let length = /*Quiz.length; */ 3
+      let length = Quiz.length; 
       index= Math.floor(Math.random() * length );  // Returns random number
       currentquestion  = Quiz[index];
       setPage();
        
   }
 
+  /* Populates page with current question  */
   function setPage() {
     promptset.text(currentquestion.prompt);
     
@@ -124,19 +131,33 @@ $(document).ready(function () {
     image.attr("src", currentquestion.image1);
     
   }
-  
 
+/* Sets Final Screen */
+
+function setFinalScreen() {
+  if (Quiz.length = 0)  {
+    promptset.text("GAME OVER!")
+    endtitle.toggleClass("hide");
+    winscreen.text(win);
+    lossscreen.text(loss);
+
+
+    
+  }
+  
+}
+  
+/* Sets and resets game. Replaces near-duplicate functions */
 function resetGame() {
   clickcount = 0;
- 
   pickQuestions();
   setPage();
   time = 15;
   timer.text("15");
-
 console.log("Reset") 
 }
 
+/* Sets Timer */
 function setTimer() {
   clock = setInterval(startCountDown, 1000);
   startCountDown();
@@ -153,6 +174,7 @@ function setTimer() {
     timer.text(time);
   }
 
+/* Makes timer start on first click */
 function timerOnFirstClick() {
   if (clickcount === 1 )  {
     time = 15;
@@ -160,6 +182,7 @@ function timerOnFirstClick() {
   }
 }
 
+/* Sets win function */
 function setWin() {
   promptset.text("You are correct!");
     image.attr("src", currentquestion.imagesolution);
@@ -180,6 +203,7 @@ function setWin() {
     resetGame();
   });
 
+  /* This is the click event that provides the decision making for the game */
   pageoptions.click(function(){
     currentvalue = parseInt($(this).attr("value"));
     currentanswer = currentquestion.answer;
@@ -204,7 +228,6 @@ console.log(currentanswer, currentvalue)
           promptset.text("We can't all be stable geniuses!");
           setTimeout(resetGame, 3000);
           clearInterval(clock);
-          console.log("Trigger Loss")
       }
 
     }
