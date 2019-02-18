@@ -20,7 +20,7 @@ $(document).ready(function () {
   const endtitle = $(".end-title");
   const winspan = $("#win");
   const lossspan = $("#loss");
-  let gamecount = 1;
+  const playagain = $(".play-again");
   let index = 0;
   let currentquestion;
   let currentanswer;
@@ -54,7 +54,7 @@ $(document).ready(function () {
       answer: 2,
       
     }, 
-    /* TO DO: Add more data
+    /* TO DO: Add more data HERE to populate game
     {
       image1: "assets/images/#.jpg",
       imagesolution: "assets/images/#.jpg",
@@ -121,7 +121,7 @@ $(document).ready(function () {
        
   }
 
-  /* Populates page with current question  */
+  /* Populates page with current question TODO: Rework code to make this less repetitive  */
   function setPage() {
     promptset.text(currentquestion.prompt);
     
@@ -142,11 +142,10 @@ function setFinalScreen() {
     endtitle.toggleClass("hide");
     winspan.text(win);
     lossspan.text(loss);
-
-
-    
-  
-  
+    pageoptions.addClass("hide");
+    playagain.toggleClass("hide");
+    timer.toggleClass("hide");
+      
 }
   
 /* Sets and resets game.  */
@@ -207,11 +206,29 @@ function setWin() {
   
   /*Sets up click events */
 
+/* This is the Let's Play Button. Triggers start of game */
  button.click(function(){
    button.addClass("hide");
    timer.toggleClass("hide");
+  
+
+   
     resetGame();
   });
+
+/* This is the Play Again Button. Triggers restart of game */
+
+playagain.click(function(){
+  console.log("Play Again")
+  win = 0;
+  loss = 0;
+  index = 0;
+  endtitle.toggleClass("hide");
+  pageoptions.toggleClass("hide");
+  console.log(win, loss, index)
+  resetGame();
+ });
+
 
   /* This is the click event that provides the decision making for the game */
   pageoptions.click(function(){
