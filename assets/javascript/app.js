@@ -1,7 +1,3 @@
-/* TO DO for completed game: Add function to remove question from array once used. 
- * Populate data. Add finish screen */
-
-
 $(document).ready(function () {
 
  
@@ -17,7 +13,8 @@ $(document).ready(function () {
   const endtitle = $(".end-title");
   const winscreen = $("#win");
   const lossscreen = $("#loss");
-  let currentindex;
+  let gamecount = 1;
+  let index = 0;
   let currentquestion;
   let currentanswer;
   let win = 0;
@@ -90,7 +87,6 @@ $(document).ready(function () {
       options: ["cc", "dd", "ee", "ff"],
       answer: 3,
     },
-
     {
       image1: "assets/images/#.jpg",
       imagesolution: "assets/images/#.jpg",
@@ -98,7 +94,6 @@ $(document).ready(function () {
       options: ["gg", "hh", "ii", "jj"],
       answer: 3,
     },
-
     {
       image1: "assets/images/#.jpg",
       imagesolution: "assets/images/#.jpg",
@@ -113,9 +108,8 @@ $(document).ready(function () {
  /*This picks questions at random */
  
   function pickQuestions() {
-      let length = Quiz.length; 
-      currentindex= Math.floor(Math.random() * length );  // Returns random number
-      currentquestion  = Quiz[currentindex];
+    
+      currentquestion  = Quiz[index];
       setPage();
        
   }
@@ -136,7 +130,7 @@ $(document).ready(function () {
 /* Sets Final Screen */
 
 function setFinalScreen() {
-  if (Quiz.length = 0)  {
+ 
     promptset.text("GAME OVER!")
     endtitle.toggleClass("hide");
     winscreen.text(win);
@@ -144,33 +138,26 @@ function setFinalScreen() {
 
 
     
-  }
+  
   
 }
-
-function splitArray() {
-  if (currentindex > -1) {
-    Quiz.splice(currentindex, 1);
-  }
-
-  console.log(Quiz);
-}
   
-/* Sets and resets game. Replaces near-duplicate functions */
+/* Sets and resets game.  */
 function resetGame() {
- setGame()
- splitArray()
+ 
 
-}
-
-function setGame() {
- clickcount = 0;
+ if (index < 3) {
+  clickcount = 0;
   pickQuestions();
   setPage();
   time = 15;
   timer.text("15");
-  console.log("Reset")
+
+ } else {
+  setFinalScreen()
+ }
   
+
 }
 
 /* Sets Timer */
@@ -216,7 +203,7 @@ function setWin() {
  button.click(function(){
    button.addClass("hide");
    timer.toggleClass("hide");
-    setGame();
+    resetGame();
   });
 
   /* This is the click event that provides the decision making for the game */
@@ -230,6 +217,8 @@ function setWin() {
 console.log(currentanswer, currentvalue)
    
    if (currentvalue === currentanswer) {
+    index ++
+    console.log(index)
     setWin()
     } else {
 
@@ -238,6 +227,8 @@ console.log(currentanswer, currentvalue)
       
       }
         else {
+          index ++
+        console.log(index)
           loss ++
           console.log("Loss", loss)
           image.attr("src", currentquestion.imagesolution);
