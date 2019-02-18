@@ -1,7 +1,6 @@
-/* Still working on this but I ran out of time.
-* TODO: Final screen working
+/*  TODO: 
 *Add data for questions.
-*Clean up  Javascript mess below */
+*Clean up code */
 
 
 
@@ -21,6 +20,7 @@ $(document).ready(function () {
   const winspan = $("#win");
   const lossspan = $("#loss");
   const playagain = $(".play-again");
+  const defaultimage = "assets/images/trump.jpg";
   let index = 0;
   let currentquestion;
   let currentanswer;
@@ -145,6 +145,7 @@ function setFinalScreen() {
     pageoptions.addClass("hide");
     playagain.toggleClass("hide");
     timer.toggleClass("hide");
+    image.attr("src", defaultimage);
       
 }
   
@@ -227,6 +228,7 @@ playagain.click(function(){
   pageoptions.toggleClass("hide");
   timer.toggleClass("hide");
   console.log(win, loss, index)
+  
   resetGame();
  });
 
